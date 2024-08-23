@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from "dotenv"
+
 import authRoutes from './routes/auth.routes.js'
+import userRoutes from './routes/user.routes.js'
+
 import connectMongoDB from "./db/conncetMongoDB.js";
 import cookieParser from "cookie-parser";
 
@@ -14,8 +17,12 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 // auth api 
 app.use("/api/auth", authRoutes)
+
+// user api 
+app.use("/api/user",userRoutes)
 
 app.listen(port, () => {
     console.log(`app is runnig on port ${port}`);
